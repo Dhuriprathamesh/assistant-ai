@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assistant.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="user-profile">
+                <div class="avatar-container">
+                    <img src="ai_avatar.jpg" alt="AI Avatar" id="ai-avatar">
+                    <button class="change-avatar" onclick="document.getElementById('avatar-input').click()">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                    <input type="file" id="avatar-input" hidden accept="image/*">
+                </div>
+                <h2 id="user-name">User</h2>
+                <p class="status">AI Assistant Ready</p>
+            </div>
+            
+            <nav class="menu">
+                <button class="menu-item active" data-section="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="menu-item" data-section="voice">
+                    <i class="fas fa-microphone"></i>
+                    <span>Voice Commands</span>
+                </button>
+                <button class="menu-item" data-section="history">
+                    <i class="fas fa-history"></i>
+                    <span>History</span>
+                </button>
+                <button class="menu-item" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </button>
+            </nav>
+
+            <div class="theme-toggle">
+                <button class="theme-btn" data-theme="dark">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="theme-btn" data-theme="light">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="theme-btn" data-theme="neon">
+                    <i class="fas fa-bolt"></i>
+                </button>
+            </div>
+        </div>
+
+        <main class="main-content">
+            <div class="header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Type your command or question...">
+                </div>
+                <div class="voice-control">
+                    <button class="voice-btn" id="voice-toggle">
+                        <i class="fas fa-microphone"></i>
+                        <span>Voice Input</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="dashboard-section active" id="dashboard">
+                <div class="welcome-card">
+                    <h1>Welcome back, <span id="welcome-name">User</span>!</h1>
+                    <p class="current-time" id="current-time"></p>
+                </div>
+
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message ai-message">
+                            <div class="message-avatar">
+                                <img src="ai_avatar.jpg" alt="AI">
+                            </div>
+                            <div class="message-content">
+                                <p>Hello! I'm your AI assistant. How can I help you today?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <button class="action-card" data-action="weather">
+                        <i class="fas fa-cloud-sun"></i>
+                        <span>Weather</span>
+                    </button>
+                    <button class="action-card" data-action="wikipedia">
+                        <i class="fas fa-book"></i>
+                        <span>Wikipedia</span>
+                    </button>
+                    <button class="action-card" data-action="time">
+                        <i class="fas fa-clock"></i>
+                        <span>Time</span>
+                    </button>
+                </div>
+
+                <div class="ai-tip-card">
+                    <h3>AI Tip of the Day</h3>
+                    <p id="ai-tip"></p>
+                </div>
+            </div>
+
+            <div class="voice-section" id="voice">
+                <div class="voice-status">
+                    <div class="voice-wave">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                    </div>
+                    <p id="voice-status-text">Click the microphone to start</p>
+                </div>
+                <div class="voice-commands">
+                    <h3>Available Commands</h3>
+                    <ul>
+                        <li>"What's the weather in [city]?"</li>
+                        <li>"Search Wikipedia for [topic]"</li>
+                        <li>"What time is it?"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="history-section" id="history">
+                <h2>Command History</h2>
+                <div class="history-list" id="history-list">
+                    <!-- History items will be added here dynamically -->
+                </div>
+            </div>
+
+            <div class="settings-section" id="settings">
+                <h2>Settings</h2>
+                <div class="settings-group">
+                    <h3>Voice Settings</h3>
+                    <div class="setting-item">
+                        <label>Voice Input</label>
+                        <label class="switch">
+                            <input type="checkbox" id="voice-enabled" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>Voice Speed</label>
+                        <input type="range" min="0.5" max="2" step="0.1" value="1" id="voice-speed">
+                    </div>
+                </div>
+                <div class="settings-group">
+                    <h3>Appearance</h3>
+                    <div class="setting-item">
+                        <label>Theme</label>
+                        <select id="theme-select">
+                            <option value="dark">Dark</option>
+                            <option value="light">Light</option>
+                            <option value="neon">Neon</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="assistant.js"></script>
+</body>
+</html> 

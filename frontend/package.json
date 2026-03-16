@@ -1,0 +1,14 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Assistant AI",
+  "main": "app.js",
+  "scripts": {
+    "dev": "live-server --port=5000 --open=assistant.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
